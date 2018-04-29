@@ -1,0 +1,22 @@
+<div class="post-slider text-center">
+					<?php
+				$homesArgs = array(
+					'post_type'=>'post_homes',
+					'posts_per_page'=> 9,
+					'orderby'=>'post_date',
+					'order'=>'DESC',
+				);
+					$homes = new WP_Query($homesArgs);?>
+					<?php if($homes->have_posts()): ?>
+						<?php while($homes->have_posts()): $homes->the_post() ?>
+              <div class="cat-name text-center">
+									<?php $term_list = wp_get_post_terms( get_the_ID(), 'builders'); ?>
+											<?php foreach ($term_list as $item):?>
+													<span><?php echo $item->name; ?> </span>
+											<?php endforeach ?>
+										</div>
+              <?php endwhile; ?>
+					<?php endif;?>
+				<?php wp_reset_postdata();  ?>
+
+			</div>
