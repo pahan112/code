@@ -1,0 +1,3 @@
+<?php if ($phone = get_field( "phone","options" )): ?>
+	<a href="tel:<?php  echo	$phone;  ?>" class="footer-tel"><?php echo _e('Phone: ') ?> <?php echo $phone ?></a>
+<?php endif ?>
