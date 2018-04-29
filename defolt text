@@ -1,0 +1,3 @@
+<?php if ($about_content = get_field( "about_content" )): ?>
+	<div class="coming-content"><?php echo $about_content ?></div>
+<?php endif ?>
