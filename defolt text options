@@ -1,0 +1,3 @@
+<?php if ($copiright_text = get_field( "copiright_text","options" )): ?>
+	<div class="copiright_text"><?php echo $copiright_text ?></div>
+<?php endif ?>
