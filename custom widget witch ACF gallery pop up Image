@@ -1,0 +1,45 @@
+class Banner_Image_Widget extends WP_Widget
+{
+        function __construct( ) {
+            parent::__construct(
+                'banner_image_widget', // Base ID
+                __('Buss Gallery Widget', 'text_domain'), // Name
+                array( 'description' => __( 'This is a custom widget', 'text_domain' ), ) // Args
+            );
+        }
+
+	function update($new_instance, $old_instance)
+	{
+		return $new_instance;
+	}
+
+	function form($instance)
+	{
+		//$title = esc_attr($instance["title"]);
+		//echo "<br />";
+	}
+
+	function widget($args, $instance)
+	{
+		$widget_id = "widget_" . $args["widget_id"];
+                $some_field = get_field('service_centre_gallery', $widget_id); ?>
+		<?php
+
+		$images = get_field('service_centre_gallery', $widget_id);
+
+		if( $images ): ?>
+		    <ul class="service-gallery">
+		        <?php foreach( $images as $image ): ?>
+		            <li>
+		                <a href="<?php echo $image['url']; ?>">
+		                     <img src="<?php echo $image['sizes']['full_hd']; ?>" alt="<?php echo $image['alt']; ?>" />
+		                </a>
+		                <p><?php echo $image['caption']; ?></p>
+		            </li>
+		        <?php endforeach; ?>
+		    </ul>
+		<?php endif; ?>
+
+	<?php }
+}
+register_widget("Banner_Image_Widget");
