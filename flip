@@ -1,0 +1,66 @@
+wp_enqueue_script( 'cloudflare', "https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js", null, null, true );
+
+
+js=======================================
+
+CSSPlugin.defaultTransformPerspective = 1000;
+
+//we set the backface
+TweenMax.set($(".cardBack"), {rotationY:-180});
+TweenLite.set([".cardBack", ".cardFront"], {backfaceVisibility:"hidden"});
+
+$.each($(".cardCont"), function(i,element) {
+
+    var frontCard = $(this).children(".cardFront"),
+      backCard = $(this).children(".cardBack"),
+      tl = new TimelineMax({paused:true});
+
+    tl
+        .to(frontCard, 1, {rotationY:180})
+        .to(backCard, 1, {rotationY:0},0)
+        .to(element, .5, {z:50},0)
+        .to(element, .5, {z:0},.5);
+
+    element.animation = tl;
+
+});
+
+$(".cardCont").hover(elOver, elOut);
+
+function elOver() {
+    this.animation.play();
+}
+
+function elOut() {
+    this.animation.reverse();
+ }
+ 
+ 
+ html=========================================================
+ 	<?php while($team->have_posts()): $team->the_post() ?>
+						<div class="medium-6 large-4 small-12  columns">
+						  <div class="cardCont">
+								<div class="cardFront ">
+										<?php $thumbnailimg = get_the_post_thumbnail_url(); ?>
+										<div class="team-img" <?php bg( $thumbnailimg, 'full_hd'); ?>></div>
+										<h4 class="team-title"><?php the_title(); ?></h4>
+										<div class="team-content"><?php the_content(); ?></div>
+								</div>
+								<div class="cardBack ">
+									<?php if ($post_team_about = get_field( "post_team_about" )): ?>
+										<div class="post_team_about"><?php echo $post_team_about ?></div>
+									<?php endif ?>
+								</div>
+							</div>
+						</div>
+					<?php endwhile; ?>
+ css==============================================================================
+ .cardCont{
+  position: relative;
+}
+.cardBack{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+ 
