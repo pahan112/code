@@ -1,0 +1,2 @@
+<?php  $callback_background = get_field('callback_background' , 'options')['url']; ?>
+<div class="about-callback text-center" <?php bg($callback_background ,'full_hd') ?>>
