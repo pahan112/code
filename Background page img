@@ -1,0 +1,11 @@
+<?php if ( have_posts() ) : ?>
+		<?php while ( have_posts() ) : the_post(); ?>
+			<?php
+			$page_id = get_queried_object_id();
+			$page_object = get_page( $page_id );
+
+			?>
+			<?php $home_bg = get_attached_img_url($page_id,'full_hd'); ?>
+			<div class="hero"  <?php bg($home_bg ,'full_hd') ?>>
+    <?php    endwhile; ?>
+ <?php endif ?>
