@@ -1,0 +1,8 @@
+	<?php if ($home_button_video =  get_field('home_button_video' ,false,false)) : ?>
+				<a data-fancybox-type="iframe" href="<?php echo $home_button_video ?>" class="home-more various fancybox button">
+					<img class="popupimg" src="<?php echo get_template_directory_uri(); ?>/images/play.png">
+					<?php if ($home_button_text =  get_field('home_button_text')):?>
+						<p class="home-button-text"><?php echo $home_button_text ?></p>
+					<?php endif ?>
+				</a>
+			<?php endif ?>
