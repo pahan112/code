@@ -1,0 +1,22 @@
+	<?php
+				// check if the repeater field has rows of data
+				if( have_rows('home_our_services') ):
+				 	// loop through the rows of data
+				    while ( have_rows('home_our_services') ) : the_row();?>
+				      	<?php
+							$post_object = get_sub_field('home_service_post');
+							if( $post_object ):
+								// override $post
+								$post = $post_object;
+								setup_postdata( $post );
+								?>
+										<a class="main-service-link" href="<?php the_permalink(); ?>">
+											<div class="medium-6 large-3 small-12 columns post-service">
+												<div class="main-img"> <?php the_post_thumbnail(); ?>	</div>
+												<div class="main-busses-title text-center"><?php the_title(); ?></div>
+								 			</div>
+							 			</a>
+						 			<?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+								<?php endif; ?>
+					<?php endwhile ?>
+				<?php endif; ?>
