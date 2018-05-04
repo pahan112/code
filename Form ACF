@@ -1,0 +1,3 @@
+	<?php if($contact_form = get_field('callback','options')): ?>
+			<?php echo do_shortcode( '[gravityform id="' . $contact_form[id] . '" title="false" description="true" ajax="true"]' ); ?>
+		<?php endif ?>
