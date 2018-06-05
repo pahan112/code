@@ -1,5 +1,4 @@
 <?php
-	$image = get_field('builders_image');
-	if( !empty($image) ): ?>
-		<div class="builders-image" style="background-image: url(<?php  echo $image['url']; ?>);"></div>
-	<?php endif; ?>
+	<?php $home_main_image = get_field('home_main_image'); ?>
+		<div class="builders-image" <?php bg($home_main_image, 'large'); ?>></div>
+	
