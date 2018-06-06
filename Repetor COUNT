@@ -1,0 +1,32 @@
+	<div class="medium-12 large-5 small-12 columns matchHeight dn-t hero-cn" id="anim-left">
+				<?php the_content(); ?>
+				<?php if( have_rows('home_about_rewards') ):
+					 $count = 0; ?>
+
+					<ul class="partner">
+
+					<?php while( have_rows('home_about_rewards') ): the_row();
+						// vars
+						$image = get_sub_field('rewards_image');
+						$link = get_sub_field('rewards_link');
+						?>
+						<?php if($count == 0 || $count == 4) :?>
+				    		<div class="medium-12 small-12">
+					    <?php endif ?>
+							<li>
+								<?php if( $link ): ?>
+									<a href="<?php echo $link; ?>" target="_blank">
+								<?php endif; ?>
+									<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" />
+								<?php if( $link ): ?>
+									</a>
+								<?php endif; ?>
+							</li>
+							<?php if($count == 3 || $count == 7) :?>
+					    		</div>
+						   <?php endif ?>
+							 <?php  $count++; ?>
+					<?php endwhile; ?>
+					</ul>
+				<?php endif; ?>
+			</div>
