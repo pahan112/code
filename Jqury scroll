@@ -1,0 +1,20 @@
+function doctorScroll(){
+     $('#doctor').each(function(){
+      var offsetElTop = $(this).offset().top,
+      	offsetElBottom = offsetElTop + $(this).height(),
+      	scrollWindowY = $(window).scrollTop(),
+      	windowHeight = $(window).height(),
+      	elHeight = $(this).outerHeight(),
+      	scrollToElTop = offsetElTop - windowHeight,
+      	scrollToElBottom = offsetElBottom,
+      	elVisible = elHeight + windowHeight,
+      	bootmScreen =  scrollWindowY + windowHeight;
+
+
+       	 console.log( elVisible, bootmScreen );
+       	/* console.log( scrollWindowY, windowHeight );*/
+      if ( bootmScreen > offsetElBottom ){
+       	 console.log( '123' );
+      }
+     });
+	 }
