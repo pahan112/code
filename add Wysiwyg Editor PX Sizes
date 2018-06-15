@@ -1,0 +1,16 @@
+function wp_editor_fontsize_filter( $buttons ) {
+        array_shift( $buttons );
+        array_unshift( $buttons, 'fontsizeselect');
+        array_unshift( $buttons, 'formatselect');
+        return $buttons;
+}
+add_filter('mce_buttons_2', 'wp_editor_fontsize_filter');
+
+
+if ( ! function_exists( 'wpex_mce_text_sizes' ) ) {
+    function wpex_mce_text_sizes( $initArray ){
+        $initArray['fontsize_formats'] = "9px 10px 12px 13px 14px 16px 18px 21px 24px 28px 32px 36px";
+        return $initArray;
+    }
+}
+add_filter( 'tiny_mce_before_init', 'wpex_mce_text_sizes' );
