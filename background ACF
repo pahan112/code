@@ -1,4 +1,3 @@
-<?php
-	<?php $home_main_image = get_field('home_main_image'); ?>
-		<div class="builders-image" <?php bg($home_main_image, 'large'); ?>></div>
+<?php $home_main_image = get_field('home_main_image'); ?>
+<div class="builders-image" <?php bg($home_main_image, 'large'); ?>></div>
 	
