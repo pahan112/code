@@ -1,0 +1,11 @@
+function getData($atts) {
+	extract(shortcode_atts(array(
+	"arg_name" => 'first'
+	), $atts));
+	return $_GET[$arg_name];
+}
+add_shortcode('getData', 'getData');
+
+
+content editor
+[getData arg_name="focussgr"]
