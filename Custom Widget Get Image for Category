@@ -1,0 +1,53 @@
+add_action('widgets_init', 'my_widget');
+function my_widget(){
+	register_widget('My_Widget');
+}
+class My_Widget extends WP_Widget{
+ // Creating/initialize widget
+	function __construct(){
+		$widget_id = 'widget_id';
+		$widget_title = 'Random Images';
+		$widget_description = 'Displays Random Images';
+		parent::__construct($widget_id, $widget_title, array('description'=> $widget_description));
+	}
+// Widget Front-end output
+	function widget($args, $instance){
+		$widget_id = "widget_" . $args["widget_id"];
+		$image_category_id = get_field('widget_category', $widget_id);
+
+
+			$images =& get_children( array (
+				'post_type' => 'attachment',
+				 'orderby' => 'rand',
+				'post_mime_type' => 'image',
+				 'tax_query' => array(
+					    array(
+					    'taxonomy' => 'media_category',
+					    'field' => 'term_id',
+					    'terms' => $image_category_id
+					     )
+					  )
+			));
+			$i = 1;
+			if ( empty($images) ) {
+				// no attachments here
+			} else {
+				foreach ( $images as $attachment_id => $attachment ) {
+					if($i == 1){
+						echo wp_get_attachment_image( $attachment_id, 'large' );
+						?><div class="exsrt-art-img"><?php echo $attachment->post_content; ?></div><?php
+					}
+					$i++;
+				}
+			}
+		?><?php
+	}
+// Widget settings
+	function form($instance){
+		extract($instance); ?>
+		<p>
+			<label for="<?php echo $this->get_field_id('title') ?>"><?php _e('Title') ?>:</label>
+			<input class= "widefat" type="text" name="<?php echo $this->get_field_name('title') ?>" id="<?php echo $this->get_field_id('title') ?>" value="<?php if(isset($title)) echo esc_attr($title); ?>" />
+		</p>
+	<?php }
+} ?>
