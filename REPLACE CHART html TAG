@@ -1,0 +1,6 @@
+$(document).ready(function () {
+		setTimeout(function(){
+		 		$('.vc_grid-item-mini p').each(function(i){
+		 			$(this).html($(this).text().replace('**','</em>').replace('*','<em>'));
+		 		});
+		}, 1000);
