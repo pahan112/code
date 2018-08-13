@@ -1,0 +1,17 @@
+<?php
+		// check if the repeater field has rows of data
+		if( have_rows('partner_home_list') ):
+		 	// loop through the rows of data
+		    while ( have_rows('partner_home_list') ) : the_row();?>
+		      	<?php
+					$logo = get_sub_field('partner_home_list_logo');
+					$link = get_sub_field('partner_home_list_link');
+						?>
+						<a class="partner_home_list_link" href="<?php echo $link ?>">
+							<div class="medium-6 large-3 small-12 columns">
+								<div class="partner_home_list_logo"  <?php bg($logo, 'large'); ?>>	</div>
+				 			</div>
+			 			</a>
+		 			<?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+			<?php endwhile ?>
+		<?php endif; ?>
