@@ -1,0 +1,20 @@
+ function serviceScroll(){
+     $('.services-main-home').each(function(){
+      var offsetElTop = $(this).offset().top,
+      	elVisible = $('.services-main-home').outerHeight() + offsetElTop -700,
+      	bootmScreen =  $(window).scrollTop() + $(window).height();
+      	if (elVisible < bootmScreen) {
+
+ 				var duration = 500;
+ 				$('.services-main-home').each(function(i) {
+ 					var $this = $(this);
+ 					setTimeout(function(){$this.removeClass("post-service");}, i*(duration/2));
+ 				});
+ 				if ($('.services-main-home').hasClass('post-service')) {
+		 			setTimeout(function(){
+		 				$.fn.matchheight._update();
+		 			}, 510);
+ 				}
+ 			}
+     });
+	 }
