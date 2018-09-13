@@ -1,0 +1,9 @@
+ jQuery(window).scroll(function() {
+                		    var scroll = jQuery(window).scrollTop();
+
+                		    if (scroll >= 98) {
+                		      jQuery("header.qodef-page-header").addClass("header-active");
+                		    } else {
+                		      jQuery("header.qodef-page-header").removeClass("header-active");
+                		    }
+                		  });
