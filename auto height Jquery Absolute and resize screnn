@@ -1,0 +1,9 @@
+    if (window.matchMedia('(max-width: 767px)').matches) {
+       $( ".vc_tta-panels" ).on('click','.vc_tta-panel-heading',function(){
+              var $elemH = $(this).siblings('.vc_tta-panel-body').height();
+              var $tabH = $('.vc_tta-panels').height();
+              console.log($elemH + $tabH);
+              $('.vc_tta-panels-container').height($elemH + $tabH);
+              window.dispatchEvent(new Event('resize'));
+         });
+    }
