@@ -1,0 +1,10 @@
+remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+add_action('woocommerce_review_order_after_order_total', 'woo_review_order_coupon_start', 10);
+function woo_review_order_coupon_start(){
+	echo '<tr class="cupon-ctm"><td colspan="2">';
+}
+add_action('woocommerce_review_order_after_order_total', 'woocommerce_checkout_coupon_form', 20);
+add_action('woocommerce_review_order_after_order_total', 'woo_review_order_coupon_end', 30);
+function woo_review_order_coupon_end(){
+	echo '</td></tr>';
+}
