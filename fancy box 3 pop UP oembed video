@@ -1,0 +1,9 @@
+<?php $video = get_field( 'hero_autonomous_video' );?>
+	<?php	if ( $video ) :  ?>
+		<?php	if ( preg_match('/src="(.+?)"/', $video, $matches) ) :  ?>
+			<?php	$src = $matches[1]; ?>
+			<a class="various fancybox" data-fancybox-type="iframe" href="<?php echo $src ?>">
+				<img src="<?php echo get_stylesheet_directory_uri() ?>/images/YouTube.png">
+			</a>
+		<?php endif; ?>
+	<?php endif; ?>
