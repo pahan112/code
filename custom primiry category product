@@ -1,0 +1,12 @@
+<?php $cat_list = wp_get_post_terms( get_the_ID(), 'product_type', [ 'fields' => 'all' ] );
+foreach ( $cat_list as $cat ) :
+ if ( get_post_meta( get_the_ID(), '_yoast_wpseo_primary_product_type', true ) == $cat->term_id ) : ?>
+   <div class="title-single-product">
+   		<h1><?php echo $cat->name; ?></h1>
+   </div>
+ <?php endif; ?>
+<?php endforeach; ?>
+
+
+
+_yoast_wpseo_primary_product_type /// _yoast_wpseo_primary_TAX_NAME
