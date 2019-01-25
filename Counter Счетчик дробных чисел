@@ -1,0 +1,32 @@
+var scrollCounter = true;
+	function beginCount() {
+		if ($('.below_content_about_us_content').length) {
+			var elementTop = $(".below_content_about_us_content").offset().top;
+			var elementBottom = elementTop + $(".below_content_about_us_content").outerHeight();
+
+			var viewportTop = $(window).scrollTop();
+			var viewportBottom = viewportTop + $(window).height();
+
+			var isOnViewPort = elementBottom > viewportTop && elementTop < viewportBottom;
+
+
+			if (scrollCounter === true && isOnViewPort) {
+				$('.count-item-number').each(function () {
+					$(this).prop('Counter',0).animate({
+						Counter: $(this).text()
+					}, {
+						duration: 4000,
+						easing: 'swing',
+						step: function (now) {
+							if($(this).text().indexOf('.') !== 1){
+							  $(this).text(Math.round(now));
+							}else{
+								$(this).text(Number.parseFloat(now).toFixed(1));
+							}
+						}
+					});
+				});
+				scrollCounter = false;
+			}
+		}
+	}
