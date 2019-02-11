@@ -1,0 +1,29 @@
+function mytheme_customize_register( $wp_customize ) {
+	$wp_customize->add_section( 'mytheme_new_section_name' , array(
+	    'title'      => __( 'Top Bar', 'mytheme' ),
+	    'priority'   => 30,
+	) );
+   $wp_customize->add_setting( 'themeslug_text_setting_id', array(
+     'capability' => 'edit_theme_options',
+     'default' => 'Lorem Ipsum',
+     'sanitize_callback' => 'sanitize_text_field',
+   ) );
+
+   $wp_customize->add_control( 'themeslug_text_setting_id', array(
+     'type' => 'text',
+     'section' => 'mytheme_new_section_name', // Add a default or your own section
+     'label' => __( 'Custom Text' ),
+     'description' => __( 'This is a custom text box.' ),
+   ) );
+}
+add_action( 'customize_register', 'mytheme_customize_register' );
+
+    <?php
+
+            if ( '' == get_theme_mod( 'themeslug_text_setting_id' ) ) { $themeslug_text_setting_id = 'Default set of data'; } else { $themeslug_text_setting_id = get_theme_mod('themeslug_text_setting_id'); }
+
+            echo $themeslug_text_setting_id;
+        ?>
+
+
+
