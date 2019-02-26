@@ -1,0 +1,19 @@
+Да, ты можешь. Все, что вам нужно, это создать фильтр, wp_get_archives();чтобы он принимал post_typeпараметр:
+
+function my_custom_post_type_archive_where($where,$args){  
+    $post_type  = isset($args['post_type'])  ? $args['post_type']  : 'post';  
+    $where = "WHERE post_type = '$post_type' AND post_status = 'publish'";
+    return $where;  
+}
+тогда назовите это:
+
+add_filter( 'getarchives_where','my_custom_post_type_archive_where',10,2);
+
+Всякий раз, когда вы хотите отобразить архив по пользовательскому типу записи, просто передайте аргументы post_type:
+
+$args = array(
+    'post_type'    => 'your_custom_post_type',
+    'type'         => 'monthly',
+    'echo'         => 0
+);
+echo '<ul>'.wp_get_archives($args).'</ul>';
