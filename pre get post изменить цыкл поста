@@ -1,0 +1,24 @@
+
+//meta qeury
+function featured_show( $query ) {
+  if( !is_admin() && $query->is_main_query() && is_post_type_archive( 'attorneys' ) ) {
+    $current_meta = $query->get('meta_query');
+    $custom_meta = array(
+        'key' => 'staff_attorney',
+        'value' => '1',
+        'compare' => '!='
+    );
+    $meta_query = $current_meta[] = $custom_meta;
+    $query->set('meta_query', array($meta_query));
+  }
+}
+add_action( 'pre_get_posts', 'featured_show' );
+
+//search
+function change_wp_search_size($query) {
+    if ( $query->is_search ) // Make sure it is a search page
+        $query->query_vars['posts_per_page'] = 5; // Change 10 to the number of posts you would like to show
+
+    return $query; // Return our modified query variables
+}
+add_filter('pre_get_posts', 'change_wp_search_size');
