@@ -1,0 +1,36 @@
+in your page
+
+<?php show_template('flexible/flexible'); ?>
+
+parts->flexible->flexible.php
+
+<?php
+if ($flexible = get_field('flexible')) {
+    foreach ($flexible as $key => $section) {
+       /* var_dump('sections/'.$section['acf_fc_layout']);
+         var_dump($section);*/
+        show_template('layout/'.$section['acf_fc_layout'], $section);
+    }
+}
+?>
+
+parts->layout->nameSection.php
+
+<section class="<?php echo $acf_fc_layout; ?>">
+	<div class="grid-container full">
+		<?php echo $content; ?>
+		<h2 class="text-right"><?php echo $title; ?></h2>
+		<div class="grid-x grid-padding-x" data-equalizer data-equalize-on="medium">
+			<?php foreach ($list_content as $list_item):?>
+				<div class="large-4 medium-6 cell item">
+					<div class="image bg-cover"<?php bg($list_item['image'],'large') ?>></div>
+					<div class="content" data-equalizer-watch><?php echo $list_item['content']; ?></div>
+					<?php $link =  $list_item['button']; ?>
+					<?php if( $link ): ?>
+						<a class="shoting-main-item_button button" href="<?php echo $link['url']; ?>"  <?php echo $link['target'] ? ('target="'.$link['target'].'"') : ''; ?> ><?php echo $link['title']; ?></a>
+					<?php endif; ?>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	</div>
+</section>
