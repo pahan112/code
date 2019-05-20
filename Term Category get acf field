@@ -1,0 +1,2 @@
+	<?php $term  = get_the_terms(get_the_ID(), 'category' ); ?>
+	<?php $blog_icon = get_field('icon', 'term_' . $term[0]->term_id); ?>
