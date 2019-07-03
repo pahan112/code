@@ -1,0 +1,6 @@
+jQuery(".accordion-title").click(function() {
+				var $this = this;
+				setTimeout(function(){
+					jQuery('html,body').animate({scrollTop: jQuery($this).closest('.accordion').find('.is-active').offset().top}, 'slow');
+				}, 250);
+			});
